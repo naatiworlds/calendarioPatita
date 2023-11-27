@@ -2,7 +2,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const currentDate = new Date();
     const currentMonth = currentDate.getMonth() + 1; // Devuelve un valor de 0 a 11, por lo que se suma 1.
 
-    if (currentMonth === 11) {
+    if (currentMonth === 12
+        ) {
       const calendar = document.getElementById('calendar');
 
       for (let i = 1; i <= 31; i++) {
