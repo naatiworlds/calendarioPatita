@@ -62,21 +62,21 @@ document.addEventListener('DOMContentLoaded', function () {
         
         // juego del botón
         const juegoBoton = document.createElement('img');
-        juegoBoton.setAttribute('src', '../juegoBoton.png');
+        juegoBoton.setAttribute('src', '/img/juegoBoton.png');
         juegoBoton.setAttribute('alt', 'imagen del juego del botón');
         juegoBoton.classList.add('juegoImg');
         enlaceJuegoBoton.appendChild(juegoBoton);
 
         // Juego rooted War
         const juegoRooted = document.createElement('img');
-        juegoRooted.setAttribute('src', '../juegoRooted.webp');
+        juegoRooted.setAttribute('src', '/img/juegoRooted.webp');
         juegoRooted.setAttribute('alt', 'imagen del juego del botón');
         juegoRooted.classList.add('juegoImg');
         enlaceJuegoRooted.appendChild(juegoRooted);
         
         // juego tikpocalipsis
         const juegoTikpocalipsis = document.createElement('img');
-        juegoTikpocalipsis.setAttribute('src', '../juegoTikpocalipsis.webp');
+        juegoTikpocalipsis.setAttribute('src', '/img/juegoTikpocalipsis.webp');
         juegoTikpocalipsis.setAttribute('alt', 'imagen del juego del botón');
         juegoTikpocalipsis.classList.add('juegoImg');
         enlaceJuegoTikpocalipsis.appendChild(juegoTikpocalipsis);
