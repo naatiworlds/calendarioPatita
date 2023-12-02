@@ -13,6 +13,11 @@ const palabras = {
     palabra12: "SIEMPRE",
     palabra13: "JUNTAS",
   };
+  
+  function iniciarReproduccion() {
+    const audioPlayer = document.getElementById('audioPlayer');
+    audioPlayer.play();
+  }
 
   document.addEventListener('DOMContentLoaded', function () {
     const resultadoElemento = document.getElementById('resultado');
