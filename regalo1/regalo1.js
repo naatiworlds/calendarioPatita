@@ -13,14 +13,11 @@ const palabras = {
     palabra12: "SIEMPRE",
     palabra13: "JUNTAS",
   };
-  
-  function iniciarReproduccion() {
-    const audioPlayer = document.getElementById('audioPlayer');
-    audioPlayer.play();
-  }
 
   document.addEventListener('DOMContentLoaded', function () {
     const resultadoElemento = document.getElementById('resultado');
+    const enhorabuenaElemento = document.getElementById('enhorabuena');
+    let palabrasCorrectas = 0;
 
     for (const key in palabras) {
       if (palabras.hasOwnProperty(key)) {
@@ -35,9 +32,15 @@ const palabras = {
         input.addEventListener('input', function () {
           const valorInput = this.value.toLowerCase();
           if (valorInput === palabraCompleta.toLowerCase()) {
+            palabrasCorrectas++;
             resultadoElemento.textContent = '¡Correcto!';
           } else {
-            resultadoElemento.textContent = '';
+            resultadoElemento.textContent = '¡Incorrecto!';
+          }
+
+          // Comprobar si todas las palabras son correctas
+          if (palabrasCorrectas === Object.keys(palabras).length) {
+            enhorabuenaElemento.style.display = 'block';
           }
         });
       }

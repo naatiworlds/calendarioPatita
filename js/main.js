@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
       if (i > currentDate.getDate()) {
         day.classList.add('locked');
         const daysUntilUnlock = i - currentDate.getDate();
-        day.innerHTML = `<button class="counter">${daysUntilUnlock} días</button>`;
+        day.innerHTML = `<p class="counter">quedan [${daysUntilUnlock} días]</p>`;
       } else {
         // Contenido desbloqueado
         day.innerHTML = `Día ${i}`;
