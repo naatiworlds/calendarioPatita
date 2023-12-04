@@ -34,7 +34,7 @@ function handleTouchStart(e) {
   } else {
     keys.left = false;
     keys.right = true;
-  }
+  } 
 }
 
 function handleTouchEnd() {
