@@ -58,6 +58,26 @@ document.addEventListener('DOMContentLoaded', function () {
             }
           }
         }
+        if (i === 3) {
+          day.onclick = () => {
+            const existingRegalo = day.querySelector('.regalo1');
+        
+            if (existingRegalo) {
+              // Si ya existe el regalo, elimínalo
+              existingRegalo.remove();
+            } else {
+              // Si no existe, crea el regalo
+              const regalo = document.createElement('p');
+              const regalo3 = document.createElement('a');
+              regalo3.setAttribute('href', 'regalo3/regalo3.html');
+              regalo3.setAttribute('target', '_blank');
+              regalo3.classList.add('regalo1');
+              regalo.textContent = '> Regalo día 3.';
+              regalo3.appendChild(regalo);
+              day.appendChild(regalo3);
+            }
+          }
+        }
         
       }
 
