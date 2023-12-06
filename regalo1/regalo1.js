@@ -16,7 +16,15 @@ const palabras = {
 
   document.addEventListener('DOMContentLoaded', function () {
     const resultadoElemento = document.getElementById('resultado');
-    const enhorabuenaElemento = document.getElementById('enhorabuena');
+    const enhorabuenaElemento = document.createElement('p');
+    const sorpresaElemento = document.createElement('p');
+    enhorabuenaElemento.textContent = "¡¡Enhorabuenaa!!"
+    sorpresaElemento.textContent = "Sorpresaa!!"
+    const enlaceSorpresa =  document.createElement('a');
+    enlaceSorpresa.setAttribute('href', '../sorpresa/sorpresa1.html');
+    enlaceSorpresa.setAttribute('target', '_blank');
+    enlaceSorpresa.appendChild(sorpresaElemento);
+    // enlace a una página con un acertijo para la pista con algo bonito nuesto.
     let palabrasCorrectas = 0;
 
     for (const key in palabras) {
@@ -40,7 +48,7 @@ const palabras = {
 
           // Comprobar si todas las palabras son correctas
           if (palabrasCorrectas === Object.keys(palabras).length) {
-            enhorabuenaElemento.style.display = 'block';
+            resultadoElemento.appendChild(enhorabuenaElemento);
           }
         });
       }
