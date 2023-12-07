@@ -98,6 +98,26 @@ document.addEventListener('DOMContentLoaded', function () {
             }
           }
         }
+        if (i === 5) {
+          day.onclick = () => {
+            const existingRegalo = day.querySelector('.regalo1');
+        
+            if (existingRegalo) {
+              // Si ya existe el regalo, elimínalo
+              existingRegalo.remove();
+            } else {
+              // Si no existe, crea el regalo
+              const regalo = document.createElement('p');
+              const regalo5 = document.createElement('a');
+              regalo5.setAttribute('href', 'regalo5/regalo5.html');
+              regalo5.setAttribute('target', '_blank');
+              regalo5.classList.add('regalo1');
+              regalo.textContent = '> Regalo día 5.';
+              regalo5.appendChild(regalo);
+              day.appendChild(regalo5);
+            }
+          }
+        }
         
       }
 
