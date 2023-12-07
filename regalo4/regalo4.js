@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const words = {
         easy: ['patita', 'te amo', 'natilla', 'melona'],
         medium: ['marmota', 'dormilona', 'abasho', 'siempre', 'juntas'],
-        hard: ['buenoooss diaaass'],
+        hard: ['natalia', 'buenoooss diaaass', 'somos un pack', 'ps eso'],
     };
 
     let selectedWord = '';
