@@ -48,7 +48,7 @@ const palabras = {
 
           // Comprobar si todas las palabras son correctas
           if (palabrasCorrectas === Object.keys(palabras).length) {
-            resultadoElemento.appendChild(sorpresaElemento);
+            resultadoElemento.appendChild(enlaceSorpresa);
           }
         });
       }
