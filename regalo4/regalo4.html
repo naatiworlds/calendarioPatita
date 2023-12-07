@@ -1,0 +1,28 @@
+<!-- Primer HTML -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calendario de patita | día 4</title>
+    <!-- Otros enlaces a estilos, scripts, etc. según sea necesario -->
+</head>
+<body>
+    <h1>Juego del ahorcado</h1>
+    <label id="label-level-selector" for="level-selector">Selecciona un nivel:</label>
+    <select id="level-selector">
+        <option class="options" value="easy">Fácil</option>
+        <option class="options" value="medium">Intermedio</option>
+        <option class="options" value="hard">Difícil</option>
+    </select>
+    <button id="start-game-button">Jugar</button>
+
+    <script>
+        document.getElementById('start-game-button').addEventListener('click', () => {
+            const selectedLevel = document.getElementById('level-selector').value;
+            window.location.href = `ahorcado.html?level=${selectedLevel}`;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <audio src="../musica/Álvaro de Luna - Todo contigo (Videoclip Oficial).mp4" controls>
+        <p>
+          Tu navegador no soporta HTML5 video. Aquí está el
+          <a href="https://www.youtube.com/watch?v=aepfqzyI6yQ">enlace del video</a>.
+        </p>
+    </audio>
+    <div id="game-container">
+        <div id="hangman-container">
+            <svg height="150" width="200" class="figure-container">
+                <!-- Cabeza -->
+                <circle cx="50" cy="50" r="20" class="figure-part" />
+                <!-- Cuerpo -->
+                <line x1="50" y1="70" x2="50" y2="120" class="figure-part" />
+                <!-- Brazos -->
+                <line x1="50" y1="80" x2="30" y2="100" class="figure-part" />
+                <line x1="50" y1="80" x2="70" y2="100" class="figure-part" />
+                <!-- Piernas -->
+                <line x1="50" y1="120" x2="30" y2="140" class="figure-part" />
+                <line x1="50" y1="120" x2="70" y2="140" class="figure-part" />
+            </svg>
+            <div id="word-container"></div>
+        </div>
+        <div id="keyboard-container"></div>
+        <div id="message-container"></div>
+    </div>
+    
+    <script src="regalo4.js"></script>
+</body>
+</html>
