@@ -118,6 +118,26 @@ document.addEventListener('DOMContentLoaded', function () {
             }
           }
         }
+        if (i === 6) {
+          day.onclick = () => {
+            const existingRegalo = day.querySelector('.regalo1');
+        
+            if (existingRegalo) {
+              // Si ya existe el regalo, elimínalo
+              existingRegalo.remove();
+            } else {
+              // Si no existe, crea el regalo
+              const regalo = document.createElement('p');
+              const regalo6 = document.createElement('a');
+              regalo6.setAttribute('href', 'regalo6/regalo6.html');
+              regalo6.setAttribute('target', '_blank');
+              regalo6.classList.add('regalo1');
+              regalo.textContent = '> Regalo día 6.';
+              regalo6.appendChild(regalo);
+              day.appendChild(regalo6);
+            }
+          }
+        }
         
       }
 
