@@ -14,10 +14,10 @@ body {
 
 #character {
     position: absolute;
-    bottom: 0;
+    bottom: -15px;
     left: 50px;
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
     background: url('./assets/duck.png') center/contain no-repeat;
 }
 
@@ -27,7 +27,7 @@ body {
     left: 100%;
     width: 50px;
     height: 50px;
-    background-color: #0000FF;
+    background: url('./assets/manzana.png') center/contain no-repeat; /* Fondo de manzana por defecto */
 }
 
 #score {
@@ -46,4 +46,7 @@ body {
     font-size: 24px;
     color: #FF0000;
     display: none; /* Por defecto, oculto al inicio */
+}
+audio{
+    float: right;
 }

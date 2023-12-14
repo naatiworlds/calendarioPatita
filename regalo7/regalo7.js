@@ -1,9 +1,9 @@
-// game.js
+// regalo7.js
 const character = document.getElementById('character');
 const obstacle = document.getElementById('obstacle');
 const scoreValue = document.getElementById('score-value');
 
-let score = 0;
+let distance = 0;
 let isJumping = false;
 let isOnGround = true;
 let jumpHeight = 100;
@@ -74,6 +74,8 @@ function fallCharacter() {
     }, 20);
 }
 
+let firstObstacle = true;
+
 function generateObstacle() {
     obstacle.style.left = '100%';
 
@@ -81,11 +83,48 @@ function generateObstacle() {
     let maxHeight = 200; // Altura máxima de salto
     let minHeight = 50;  // Altura mínima del obstáculo
 
-    let obstacleHeight = Math.floor(Math.random() * (maxHeight - jumpHeight - minHeight)) + minHeight;
-    obstacle.style.height = obstacleHeight + 'px';
+    let obstacleHeight;
+    
+    if (firstObstacle) {
+        // Si es el primer obstáculo, asegurémonos de que sea una fruta
+        obstacleHeight = 50; // Altura mínima para la fruta
+        firstObstacle = false;
+    } else {
+        // Obstáculo normal con altura aleatoria
+        obstacleHeight = Math.floor(Math.random() * (maxHeight - jumpHeight - minHeight)) + minHeight;
+    }
 
-    score++;
-    scoreValue.textContent = score;
+    obstacle.style.height = obstacleHeight + 'px';
+    obstacle.style.background = 'transparent';
+    // Determina la fruta según la altura del obstáculo
+    let fruitType = '';
+
+    if (obstacleHeight < 80) {
+        fruitType = 'manzana';
+    } else if (obstacleHeight < 90) {
+        fruitType = 'sandia';
+    } else {
+        fruitType = 'platano';
+    }
+
+    // Crea un elemento de imagen para representar la fruta
+    let fruitImage = new Image();
+    fruitImage.src = `./assets/${fruitType}.png`;
+    fruitImage.alt = fruitType;
+    fruitImage.width = 50;
+    fruitImage.height = obstacleHeight;
+
+    // Espera a que la imagen se cargue completamente antes de agregarla al obstáculo
+    fruitImage.onload = function () {
+        // Limpia el contenido actual y agrega la imagen de la fruta
+        obstacle.innerHTML = '';
+        obstacle.appendChild(fruitImage);
+
+        // Mueve el obstáculo solo después de cargar la imagen
+        moveObstacle();
+    };
+
+     // Ajusta según tu preferencia
 }
 
 function moveCharacter() {
@@ -97,7 +136,6 @@ function moveCharacter() {
     }
 }
 
-
 function moveObstacle() {
     let obstacleLeft = parseInt(getComputedStyle(obstacle).left);
 
@@ -106,6 +144,7 @@ function moveObstacle() {
     }
 
     obstacle.style.left = obstacleLeft - 5 + 'px';
+    scoreValue.textContent = distance += 1; 
 }
 
 function moveObstacleToStart() {
@@ -132,10 +171,27 @@ function checkCollision() {
 
 function gameOver() {
     document.getElementById('game-over').style.display = 'block';
-    // location.reload();  // No recargamos la página, ya que hemos terminado el juego
+    distance = 0
+    scoreValue.textContent = distance 
+    document.location.pathname();
 }
+
 function resetGame() {
-    document.location.reload();
+    // Restablecer variables y puntuación
+    distance = 0;
+    score = 0;
+    isJumping = false;
+    isOnGround = true;
+    firstObstacle = true;
+
+    // Ocultar el mensaje de Game Over
+    document.getElementById('game-over').style.display = 'none';
+
+    // Limpiar el contenido actual del obstáculo
+    obstacle.innerHTML = '';
+
+    // Reiniciar el bucle del juego
+    gameLoop();
 }
 function gameLoop() {
     moveCharacter();
