@@ -181,7 +181,7 @@ function resetGame() {
     distance = 0;
     score = 0;
     isJumping = false;
-    isOnGround = true;
+    isOnGround = true;k
     firstObstacle = true;
 
     // Ocultar el mensaje de Game Over
