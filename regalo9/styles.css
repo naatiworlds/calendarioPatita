@@ -75,7 +75,7 @@ h1 {
 }
 
 .active {
-    border: 5px solid lightblue;
+    border: 5px solid red;
 }
 
 #game-over-title {
