@@ -101,7 +101,7 @@ let resultadoVerificado = false; // Variable para rastrear si ya se ha verificad
 
   function mostrarResultado(mensaje) {
     const resultadoMensaje = document.createElement('a');
-    resultadoMensaje.setAttribute('href', '#');
+    resultadoMensaje.setAttribute('href', '../sorpresa/sorpresa2.html');
     resultadoMensaje.textContent = mensaje;
     document.body.appendChild(resultadoMensaje);
   }
