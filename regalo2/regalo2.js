@@ -91,7 +91,7 @@ let resultadoVerificado = false; // Variable para rastrear si ya se ha verificad
     const piezasCorrectas = piezasOrdenadas.every((valor, index) => parseInt(valor) === index + 1);
 
     if (!resultadoVerificado && piezasCorrectas && piezasOrdenadas.length === 12) {
-      mostrarResultado('¡Has Ganado!');
+      mostrarResultado('¡Sorpresaaa!');
       resultadoVerificado = true;
     } else if (!resultadoVerificado && piezasOrdenadas.length === 12) {
       mostrarResultado('¡Has Perdido!');
@@ -100,7 +100,8 @@ let resultadoVerificado = false; // Variable para rastrear si ya se ha verificad
   }
 
   function mostrarResultado(mensaje) {
-    const resultadoMensaje = document.createElement('h2');
+    const resultadoMensaje = document.createElement('a');
+    resultadoMensaje.setAttribute('href', '#');
     resultadoMensaje.textContent = mensaje;
     document.body.appendChild(resultadoMensaje);
   }
