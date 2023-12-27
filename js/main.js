@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
           }
         }
-        if (i === 9) {
+        if (i === 10) {
           day.onclick = () => {
             const existingRegalo = day.querySelector('.regalo1');
         
@@ -188,16 +188,17 @@ document.addEventListener('DOMContentLoaded', function () {
             } else {
               // Si no existe, crea el regalo
               const regalo = document.createElement('p');
-              const regalo9 = document.createElement('a');
-              regalo9.setAttribute('href', 'regalo9/regalo9.html');
-              regalo9.setAttribute('target', '_blank');
-              regalo9.classList.add('regalo1');
-              regalo.textContent = '> Regalo día 9.';
-              regalo9.appendChild(regalo);
-              day.appendChild(regalo9);
+              const regalo10 = document.createElement('a');
+              regalo10.setAttribute('href', 'regalo10/regalo10.html');
+              regalo10.setAttribute('target', '_blank');
+              regalo10.classList.add('regalo1');
+              regalo.textContent = '> Regalo día 10.';
+              regalo10.appendChild(regalo);
+              day.appendChild(regalo10);
             }
           }
         }
+        
         
       }
       
