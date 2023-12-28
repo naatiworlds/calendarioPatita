@@ -1,0 +1,56 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+#crossword-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* Cambia el número de columnas según sea necesario */
+    gap: 5px;
+    max-width: 600px; /* Ajusta el ancho máximo del contenedor */
+    margin: 20px auto;
+}
+
+.cell {
+    width: 100%;
+    height: 40px; /* Ajusta la altura de las celdas según sea necesario */
+    border: 1px solid #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.filled {
+    background-color: #eee;
+}
+
+.correct {
+    color: green;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    text-align: center;
+}
+/* Clases específicas para las letras de las palabras */
+.p { color: blue; }
+.a { color: red; }
+.t { color: green; }
+.i { color: purple; }
+.e { color: orange; }
+.m { color: brown; }
+.o { color: teal; }
+.s { color: pink; }
+.j { color: maroon; }
+.u { color: navy; }
+.n { color: olive; }
