@@ -10,8 +10,8 @@ function verificarRespuesta() {
   var respuestaCorrecta = "09/12/2023";
 
   if (respuestaUsuario === respuestaCorrecta) {
-    document.getElementById('resultado').innerHTML = "¡Felicidades! Has desbloqueado el secreto.";
+    document.getElementById('resultado').innerHTML = "¡Felicidades! Has desbloqueado el <a href='./secreto2.html'>secreto</a>.";
   } else {
     document.getElementById('resultado').innerHTML = "Respuesta incorrecta. Inténtalo de nuevo.";
-  }
+  }z
 }

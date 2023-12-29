@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    #solitaire {
+      display: grid;
+      grid-template-columns: repeat(7, 50px);
+      grid-gap: 5px;
+    }
+
+    .pile {
+      border: 1px solid #333;
+      padding: 10px;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .card {
+      width: 100%;
+      height: 30px;
+      background-color: #ddd;
+      margin-bottom: 5px;
+      text-align: center;
+      line-height: 30px;
+      cursor: pointer;
+    }
+
+    .selected {
+      border: 2px solid red;
+    }
+  </style>
+</head>
+<body>
+
+<div id="solitaire"></div>
+
+<script>
+  const solitaire = document.getElementById('solitaire');
+
+  // Inicializar el juego con cartas del 1 al 7
+  const cards = Array.from({ length: 7 }, (_, index) => index + 1);
+  let selectedCard = null;
+
+  function createCard(value) {
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.textContent = value;
+    card.addEventListener('click', () => selectCard(value));
+    return card;
+  }
+
+  function createPile() {
+    const pile = document.createElement('div');
+    pile.classList.add('pile');
+    return pile;
+  }
+
+  function renderGame() {
+    solitaire.innerHTML = '';
+
+    // Crear las pilas
+    for (let i = 0; i < 4; i++) {
+      const pile = createPile();
+      solitaire.appendChild(pile);
+    }
+
+    // Distribuir las cartas en la primera pila
+    const firstPile = solitaire.querySelector('.pile');
+    cards.forEach((cardValue) => {
+      const card = createCard(cardValue);
+      firstPile.appendChild(card);
+    });
+  }
+
+  function selectCard(value) {
+    if (selectedCard === null) {
+      selectedCard = value;
+      document.querySelectorAll('.card').forEach(card => {
+        if (card.textContent == value) {
+          card.classList.add('selected');
+        }
+      });
+    } else {
+      const selectedPile = document.querySelector('.selected');
+      if (selectedPile) {
+        selectedPile.classList.remove('selected');
+        selectedPile.removeChild(selectedPile.lastChild);
+
+        const nextPile = document.querySelector('.pile:not(.selected)');
+        nextPile.appendChild(createCard(value));
+      }
+
+      selectedCard = null;
+      document.querySelectorAll('.card').forEach(card => {
+        card.classList.remove('selected');
+      });
+
+      checkVictory();
+    }
+  }
+
+  function checkVictory() {
+    const piles = document.querySelectorAll('.pile');
+    const victory = Array.from(piles).every(pile => pile.childElementCount === 7);
+
+    if (victory) {
+      alert('¡Has ganado!');
+    }
+  }
+
+  renderGame();
+</script>
+
+</body>
+</html>

@@ -1,106 +1,81 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const crosswordContainer = document.getElementById("crossword-container");
-    let selectedCell = null;
+const crossword = document.getElementById('crossword');
+        const resultDiv = document.getElementById('result');
+        const words = ["patita", "teamo", "siempre", "juntas", "nati", "twitch", "abasho"]
+        // const words = ["patita", "teamo", "siempre", "juntas", "nati", "twitch", "abasho"];
 
-    const crosswordGrid = [
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0],
-    ];
+        function createCrossword() {
+            for (let i = 0; i < 7; i++) {
+                for (let j = 0; j < 7; j++) {
+                    const cell = document.createElement('div');
+                    cell.classList.add('cell');
+                    cell.dataset.row = i;
+                    cell.dataset.col = j;
 
-    const words = [
-        { word: "PATITA", position: { row: 0, col: 0, horizontal: true } },
-        { word: "TEAMO", position: { row: 3, col: 4, horizontal: false } },
-        { word: " SIEMPRE", position: { row: 4, col: 0, horizontal: true } },
-        { word: "JUNTAS", position: { row: 7, col: 0, horizontal: true } },
-    ];
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.maxLength = 1;
+                    input.addEventListener('input', validateCrossword);
 
-    initializeCrossword();
+                    cell.appendChild(input);
 
-    function initializeCrossword() {
-        for (let row = 0; row < crosswordGrid.length; row++) {
-            for (let col = 0; col < crosswordGrid[row].length; col++) {
-                const cell = document.createElement("div");
-                cell.classList.add("cell");
+                    if (i === 0 && j < 6) {
+                        cell.classList.add(words[0][j]); // patita
+                        // console.log(cell.textContent = words[0][j])
+                    } else if (i < 5 && j === 2) {
+                        cell.classList.add(words[1][i]); //teamo
+                        // console.log(cell.textContent = words[1][i]) //teamo
 
-                if (crosswordGrid[row][col] === 1) {
-                    cell.classList.add("filled");
+                    } else if (i === 6 && j <= 7) {
+                        cell.classList.add(words[2][j]); // siempre
+                        // cell.textContent = words[2][j]
+                    } else if (i > 0 && i < 6 && j === 0) {
+                        cell.classList.add(words[3][i - 1]); // juntas
+                        // cell.textContent = words[3][i-1]
+                        // console.log(cell.textContent = words[3][i-1])
+                    } else if (i === 2 && j > 0 && j < 5) {
+                        cell.classList.add(words[4][j - 1]); // nati
+                        // cell.textContent = words[4][j-1]
+                    } else if (i < 7 && j === 4) {
+                        cell.classList.add(words[5][i]); // twitch
+                        // cell.textContent = words[5][i]
+                    } else if (i === 5 && j < 7) {
+                        cell.classList.add(words[6][j]); // abasho
+                        // cell.textContent = words[6][j]
+                    } else {
+                        cell.classList.add("undefined");
+                    }
+
+                    crossword.appendChild(cell);
                 }
-
-                cell.addEventListener("click", () => handleCellClick(row, col));
-
-                crosswordContainer.appendChild(cell);
             }
         }
 
-        words.forEach(wordInfo => addWordToCrossword(wordInfo));
-    }
+        createCrossword();
 
-    function addWordToCrossword(wordInfo) {
-        const { word, position } = wordInfo;
-        const { row, col, horizontal } = position;
-
-        const cells = document.querySelectorAll(".cell");
-        let currentIndex = row * 5 + col;
-
-        for (let i = 0; i < word.length; i++) {
-            const currentCell = cells[currentIndex];
-
-            if (!currentCell.classList.contains("filled")) {
-                currentCell.textContent = word[i];
-            }
-
-            currentCell.classList.add("correct");
-
-            if (horizontal) {
-                currentIndex++;
-            } else {
-                currentIndex += 5;
-            }
-        }
-    }
-
-    function handleCellClick(row, col) {
-        const clickedCell = document.querySelectorAll(".cell")[row * 5 + col];
-
-        if (!clickedCell.classList.contains("filled")) {
-            selectedCell = clickedCell;
-
-            // Create an input element
-            const input = document.createElement("input");
-            input.type = "text";
-            input.maxLength = 1;
-            input.style.width = "100%";
-            input.style.textAlign = "center";
-            input.addEventListener("keydown", handleInputKeydown);
-
-            // Clear the cell and append the input
-            selectedCell.innerHTML = "";
-            selectedCell.appendChild(input);
-
-            // Focus on the input
-            input.focus();
-        }
-    }
-
-    function handleInputKeydown(event) {
-        if (event.key === "Enter") {
-            // When Enter is pressed, update the cell with the input value
+        function validateCrossword(event) {
             const input = event.target;
-            const inputValue = input.value.toUpperCase();
+            const cell = input.parentElement;
 
-            selectedCell.innerHTML = inputValue;
-            selectedCell.classList.add("correct");
+            if (input.value.toLowerCase() === cell.classList[1]) {
+                cell.classList.add('correct');
+                cell.classList.remove('incorrect');
+            } else {
+                cell.classList.remove('correct');
+                cell.classList.add('incorrect');
+            }
 
-            // Remove the input element
-            input.remove();
-
-            // Deselect the cell
-            selectedCell = null;
+            checkVictory();
         }
-    }
-});
+
+        function checkVictory() {
+            const cells = document.querySelectorAll('.cell:not(.undefined)');
+            const incorrectCells = document.querySelectorAll('.incorrect');
+            const correctCells = document.querySelectorAll('.correct');
+        
+            if (incorrectCells.length === 0 && correctCells.length === cells.length) {
+                resultDiv.textContent = "¡Has ganado!";
+            } else {
+                resultDiv.textContent = "";
+            }
+        }
+        
